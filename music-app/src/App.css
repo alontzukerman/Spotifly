@@ -1,0 +1,35 @@
+.Header {
+  height: 10vh;
+  border: 1px solid black;
+}
+
+.Main {
+  height: 90vh;
+  border: 1px solid black;
+}
+
+.Search {
+  height: 10%;
+  border: 1px solid black;
+}
+
+.Info {
+  height: 90%;
+  border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.artistImage {
+  height: 100px;
+  width: auto;
+}
