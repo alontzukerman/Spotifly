@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
@@ -14,7 +15,7 @@ function logger(req,res, next) {
 const mySqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Alon0535303521',
+    password: process.env.PASSWORD,
     database: 'music_streaming_service',
     multipleStatements: true
 });
