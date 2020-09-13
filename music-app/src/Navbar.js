@@ -3,11 +3,11 @@ import React from 'react';
 function Navbar ({onClick}) {
     return (
         <div className="Navbar">
-            <button onClick={()=>onClick("top_songs")}> SONGS </button>
-            <button onClick={()=>onClick("top_artists")}> ARTISTS </button>
-            GET THE TOP 20 OF
-            <button onClick={()=>onClick("top_albums")}> ALBUMS </button>
-            <button onClick={()=>onClick("top_playlist")}> PLAYLISTS </button>
+            <button className="NavButton"onClick={()=>onClick("top_songs")}> SONGS </button>
+            <button className="NavButton" onClick={()=>onClick("top_artists")}> ARTISTS </button>
+            <span style={{fontSize: "larger"}}><strong>TOP 20</strong></span>
+            <button className="NavButton" onClick={()=>onClick("top_albums")}> ALBUMS </button>
+            <button className="NavButton" onClick={()=>onClick("top_playlist")}> PLAYLISTS </button>
         </div>
     );
 }

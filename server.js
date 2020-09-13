@@ -80,7 +80,11 @@ app.get('/album/:id' , (req,res)=>{ // GET album by ID
 });
 app.get('/playlist/:id' , (req,res)=>{ // GET playlist by ID
     let id = req.params.id;
-    let sql = `SELECT * FROM playlist WHERE playlist_id = ?`;
+    let sql = `SELECT *
+    FROM playlist_song ps 
+    JOIN song s 
+    ON ps.song_id = s.song_id 
+    WHERE playlist_id = ?`;
     mySqlConnection.query(sql , [id] ,(error , result) => {
        if (error) throw(error) ;
        res.json(result);

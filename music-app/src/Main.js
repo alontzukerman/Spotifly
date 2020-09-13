@@ -14,20 +14,22 @@ function Main () {
         console.log(data);
         setTopOf([value,data]);
     }
-    async function SearchByID (inputValue,SearchBy) {
+    async function searchByID (inputValue,searchBy) {
         console.log(inputValue);
-        console.log(SearchBy);
-        const { data } = await axios.get(`/${SearchBy}/${inputValue}`);
+        console.log(searchBy);
+        const { data } = await axios.get(`/${searchBy}/${inputValue}`);
         console.log(data);
-        setInfoOf(data);
+        setInfoOf([searchBy,data]);
     }
     return (
         <div className="Main">
             <Navbar onClick={(value)=>getTopOf(value)}/>
             <Search 
-                onClick={(inputValue,SearchBy)=>SearchByID(inputValue,SearchBy)}/>
-            {topOf && <TopInfo topOf={topOf}/>}
-            {infoOf && <Info infoOf={infoOf}/>}
+                onClick={(inputValue,searchBy)=>searchByID(inputValue,searchBy)}/>
+            <div className="InfoCon">
+                {topOf && <TopInfo topOf={topOf} onClick={(id,searchBy)=>searchByID(id,searchBy)}/>}
+                {infoOf && <Info infoOf={infoOf} onClick={(id,searchBy)=>searchByID(id,searchBy)}/>}
+            </div>
         </div>
     );
 }

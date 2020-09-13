@@ -4,9 +4,8 @@ function Album ({album}) {
     console.log(album);
     return (
         <div className="Album">
-            <span>{album.album_name}</span>
-            <span>{album.created_at}</span>
-            <span>{album.upload_at}</span>
+            <h1>{album.album_name}</h1>
+            <div>{album.created_at}</div>
         </div>
     );
 }
