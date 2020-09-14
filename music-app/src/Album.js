@@ -1,11 +1,12 @@
 import React from 'react';
  
-function Album ({album}) {
+function Album ({album,onClick}) {
     console.log(album);
     return (
-        <div className="Album">
-            <h1>{album.album_name}</h1>
-            <div>{album.created_at}</div>
+        <div className="Album" onClick={()=>onClick(album.song_id,"song")}>
+            <span>{album.title}</span>
+            <span>{album.length}</span>
+            <span>{album.created_at}</span>
         </div>
     );
 }

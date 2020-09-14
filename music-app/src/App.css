@@ -1,6 +1,19 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+.routerNav {
+  display: flex;
+}
+
+.Login {
+  border: 1px solid black;
+  width: 40%;
+  height: 70vh;
+  margin: auto;
+}
+.hiddenElement {
+  display: none;
+}
 .Header {
   height: 10vh;
   background-image: url("https://previews.123rf.com/images/anujstriker/anujstriker1608/anujstriker160800009/61698315-abstract-dark-music-background.jpg");

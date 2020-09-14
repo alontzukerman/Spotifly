@@ -64,7 +64,11 @@ app.get('/song/:id' , (req,res)=>{ // GET song by ID
 });
 app.get('/artist/:id' , (req,res)=>{ // GET artist by ID
     let id = req.params.id;
-    let sql = `SELECT * FROM artist WHERE artist_id = ?`;
+    let sql = `SELECT * 
+    FROM artist a
+    JOIN song s
+    ON a.artist_id = s.artist_id
+    WHERE a.artist_id = ?`;
     mySqlConnection.query(sql , [id] ,(error , result) => {
         if (error) throw(error) ;
         res.json(result);
@@ -72,7 +76,11 @@ app.get('/artist/:id' , (req,res)=>{ // GET artist by ID
 });
 app.get('/album/:id' , (req,res)=>{ // GET album by ID
     let id = req.params.id;
-    let sql = `SELECT * FROM album WHERE album_id = ?`;
+    let sql = `SELECT *
+    FROM album a
+    JOIN song s
+    ON a.album_id = s.album_id
+    WHERE a.album_id = ?`;
     mySqlConnection.query(sql , [id] ,(error , result) => {
         if (error) throw(error) ;
         res.json(result);
@@ -89,6 +97,16 @@ app.get('/playlist/:id' , (req,res)=>{ // GET playlist by ID
        if (error) throw(error) ;
        res.json(result);
    });
+});
+app.get('/user/:email/:password' , (req,res)=>{
+    let email = req.params.email ;
+    let password = req.params.password ;
+    let values = [email,password];
+    let sql = `SELECT user_name FROM user WHERE email = ? AND password = ?`;
+    mySqlConnection.query(sql , values ,(error , result) => {
+        if (error) throw(error) ;
+        res.json(result);
+    });
 });
 app.post('/song' , (req,res)=>{ // POST new song
     let body = req.body ;
@@ -130,6 +148,23 @@ app.post('/playlist' , (req,res)=>{ // POST new playlist
         res.send(result);
     })
 });
+app.post('/user' , (req,res)=>{ // POST new user
+    let body = req.body ;
+    let values = [
+        body.user_name,
+        body.email,
+        body.password,
+        getNewDate(),
+        0,
+        0
+    ];
+    let sql = `INSERT INTO user(user_name,email,password,created_at,is_admin,remember_token)
+    VALUES (?,?,?,?,?,?)`;
+    mySqlConnection.query(sql , values ,(error , result) => {
+        if (error) throw error ;
+        res.send(result);
+    })
+})
 app.put('/song/:id' , (req,res)=>{ // PUT - update song
     let body = req.body ;
     let values = [body.youtube_link,body.album_id,body.artist_id,body.title,body.length,body.tracker_number,body.lyrics,body.created_at,body.upload_at,req.params.id];
@@ -206,3 +241,14 @@ app.delete('/playlist/:id' , (req,res)=>{ // DELETE playlist by id
 
 const PORT = 3001 ;
 app.listen(PORT , () => console.log(`Server is listening at http://localhost:${PORT}`))
+
+function getNewDate() {
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth();
+    let day = new Date().getDate();
+
+    if(month<10) month = '0'+month;
+    if(day<10) day = '0'+day;
+
+    return `${year}-${month}-${day}`;
+}
