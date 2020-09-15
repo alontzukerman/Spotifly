@@ -98,16 +98,6 @@ app.get('/playlist/:id' , (req,res)=>{ // GET playlist by ID
        res.json(result);
    });
 });
-app.get('/user/:email/:password' , (req,res)=>{
-    let email = req.params.email ;
-    let password = req.params.password ;
-    let values = [email,password];
-    let sql = `SELECT user_name FROM user WHERE email = ? AND password = ?`;
-    mySqlConnection.query(sql , values ,(error , result) => {
-        if (error) throw(error) ;
-        res.json(result);
-    });
-});
 app.post('/song' , (req,res)=>{ // POST new song
     let body = req.body ;
     let values = [body.youtube_link,body.album_id,body.artist_id,body.title,body.length,body.tracker_number,body.lyrics,body.created_at,body.upload_at];
@@ -148,23 +138,6 @@ app.post('/playlist' , (req,res)=>{ // POST new playlist
         res.send(result);
     })
 });
-app.post('/user' , (req,res)=>{ // POST new user
-    let body = req.body ;
-    let values = [
-        body.user_name,
-        body.email,
-        body.password,
-        getNewDate(),
-        0,
-        0
-    ];
-    let sql = `INSERT INTO user(user_name,email,password,created_at,is_admin,remember_token)
-    VALUES (?,?,?,?,?,?)`;
-    mySqlConnection.query(sql , values ,(error , result) => {
-        if (error) throw error ;
-        res.send(result);
-    })
-})
 app.put('/song/:id' , (req,res)=>{ // PUT - update song
     let body = req.body ;
     let values = [body.youtube_link,body.album_id,body.artist_id,body.title,body.length,body.tracker_number,body.lyrics,body.created_at,body.upload_at,req.params.id];
@@ -242,13 +215,42 @@ app.delete('/playlist/:id' , (req,res)=>{ // DELETE playlist by id
 const PORT = 3001 ;
 app.listen(PORT , () => console.log(`Server is listening at http://localhost:${PORT}`))
 
-function getNewDate() {
-    let year = new Date().getFullYear();
-    let month = new Date().getMonth();
-    let day = new Date().getDate();
+// function getNewDate() {
+//     let year = new Date().getFullYear();
+//     let month = new Date().getMonth();
+//     let day = new Date().getDate();
 
-    if(month<10) month = '0'+month;
-    if(day<10) day = '0'+day;
+//     if(month<10) month = '0'+month;
+//     if(day<10) day = '0'+day;
 
-    return `${year}-${month}-${day}`;
-}
+//     return `${year}-${month}-${day}`;
+// }
+
+// app.post('/user' , (req,res)=>{ // POST new user
+//     let body = req.body ;
+//     let values = [
+//         body.user_name,
+//         body.email,
+//         body.password,
+//         getNewDate(),
+//         0,
+//         0
+//     ];
+//     let sql = `INSERT INTO user(user_name,email,password,created_at,is_admin,remember_token)
+//     VALUES (?,?,?,?,?,?)`;
+//     mySqlConnection.query(sql , values ,(error , result) => {
+//         if (error) throw error ;
+//         res.send(result);
+//     })
+// })
+
+// app.get('/user/:email/:password' , (req,res)=>{
+//     let email = req.params.email ;
+//     let password = req.params.password ;
+//     let values = [email,password];
+//     let sql = `SELECT user_name FROM user WHERE email = ? AND password = ?`;
+//     mySqlConnection.query(sql , values ,(error , result) => {
+//         if (error) throw(error) ;
+//         res.json(result);
+//     });
+// });
