@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
         <div className="Navbar">
-            <div>Home</div>
+            <Link style={{textDecoration: "none",color: "inherit"}}to="/">
+                <ion-icon size="large" name="home-outline"></ion-icon>
+            </Link>
         </div>
     )
 }

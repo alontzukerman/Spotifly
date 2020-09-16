@@ -1,10 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+
 
 function Playlist({playlist}) {
-    console.log(playlist);
+    // console.log(playlist);
+    let history = useHistory();
     return (
-        <div className="ItemCon">
-            {playlist.playlist_name}
+        <div 
+            className="ItemCon"
+            onClick={() => {history.push(`/playlist/${playlist.playlist_id}`)}}>
+            {
+                playlist.playlist_name
+            }
         </div>
     )
 }

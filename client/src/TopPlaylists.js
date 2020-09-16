@@ -15,13 +15,16 @@ function TopPlaylists() {
         setPlaylists(data[0]);
     }
     return (
-        <div className="TopCon">
+        <div className="MainTopCon">
+            <h1>Top Playlists</h1>
+            <div className="TopCon">
             {
                 playlists &&
                 playlists.map((playlist,i)=>{
                     return <Playlist key={i} playlist={playlist}/>
                 })
             }            
+            </div>
         </div>
     )
 }

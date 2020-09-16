@@ -16,13 +16,16 @@ function TopAlbums() {
     }
 
     return (
-        <div className="TopCon">
+        <div className="MainTopCon">
+            <h1>Top Albums</h1>
+            <div className="TopCon">
             {
                 albums &&
                 albums.map((album,i)=>{
                     return <Album key={i} album={album}/>
                 })
             }
+            </div>
         </div>
     )
 }

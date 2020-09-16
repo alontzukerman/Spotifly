@@ -15,14 +15,16 @@ function TopArtists() {
         setArtists(data[0]);
     }
     return (
-        <div className="TopCon">
+        <div className="MainTopCon">
+            <h1>Top Artists</h1>
+            <div className="TopCon">
             {
                 artists &&
                 artists.map((artist,i)=>{
                     return <Artist key={i} artist={artist}/>
                 })
             }
-            
+            </div>
         </div>
     )
 }
