@@ -1,11 +1,22 @@
 import React , { useEffect, useState } from 'react';
 import axios from 'axios';
 import Artist from './Artist';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 function TopArtists() {
 
     const [artists , setArtists] = useState();
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1
+      };
+      
     useEffect(()=> {
         getTopArtists();
     },[]);

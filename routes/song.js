@@ -18,11 +18,17 @@ router
     .route('/:id')
     .get((req,res) => {
         let id = req.params.id;
-        let sql = `CALL songByID(${id})`;
+        let query = Object.entries(req.query)[0];
+        console.log(query);
+        let sql ;
+        if(query===undefined) sql = `CALL songByID(${id})`; 
+        else if(query[0] === 'album') sql = `CALL albumByID(${query[1]})`;
+        else if(query[0] === 'artist') sql = `CALL artistByID(${query[1]})`;
+        else if(query[0] === 'playlist') sql = `CALL playlistByID(${query[1]})`;
         db.query(sql ,(error , result) => {
             if (error) throw(error) ;
             res.json(result);
-       });
+        });
     })
     .put((req,res) => {
         let body = req.body ;
@@ -42,5 +48,6 @@ router
             res.send(result);
         });
     });
+
 
 module.exports = router ;

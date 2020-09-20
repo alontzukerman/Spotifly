@@ -1,9 +1,14 @@
 import React from 'react'
+import { Link, useHistory } from 'react-router-dom';
 
-function NotFound() {
+function NotFound(props) {
+    console.log(props);
+    let history = useHistory();
+
     return (
         <div className="NotFound">
-            ERROR 404, Page Not Found
+            <div style={{fontSize: 'xxx-large'}}>ERROR 404, Page Not Found</div>
+            <Link to='/'>GO HOME</Link>
         </div>
     )
 }

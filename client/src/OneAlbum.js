@@ -1,8 +1,10 @@
 import React , { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function OneAlbum({match}) {
     console.log(match);
+    let history = useHistory();
 
     const [albumData , setAlbumData] = useState();
 
@@ -18,7 +20,7 @@ function OneAlbum({match}) {
     return (
         <div className="OneOf">
             {
-                albumData && 
+                albumData && albumData.length !== 0 && 
                 <div className="Card">
                     <img src={albumData[0].cover_img} style={{width: '100%'}}></img>
                     <h1>{albumData[0].album_name}</h1>
@@ -30,14 +32,15 @@ function OneAlbum({match}) {
                 albumData &&
                 albumData.map((row,i)=>{
                     return (
-                        <div className="songsRow" key={i}>
+                        <div className="songsRow" key={i}
+                            onClick={() => {history.push(`/song/${row.song_id}?album=${row.album_id}`)}}>
                             <ion-icon name="play-outline"></ion-icon>
                             <span style={{marginLeft: '40px'}}>{row.title}</span>
                             <span style={{float: 'right'}}>{row.length}</span>
                         </div>
                         );
                     })
-                }            
+            }            
             </div>
         </div>
     )

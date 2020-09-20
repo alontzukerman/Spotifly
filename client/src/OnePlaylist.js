@@ -1,8 +1,11 @@
 import React , { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
 
 function OnePlaylist({match}) {
     console.log(match);
+    let history = useHistory();
 
     const [playlistData , setPlaylistData] = useState();
 
@@ -30,7 +33,8 @@ function OnePlaylist({match}) {
                 playlistData &&
                 playlistData.map((row,i)=>{
                     return (
-                        <div className="songsRow" key={i}>
+                        <div className="songsRow" key={i}
+                            onClick={() => {history.push(`/song/${row.song_id}?playlist=${row.playlist_id}`)}}>
                             <ion-icon name="play-outline"></ion-icon>
                             <span style={{marginLeft: '40px'}}>{row.title}</span>
                             <span style={{float: 'right'}}>{row.length}</span>

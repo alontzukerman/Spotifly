@@ -43,5 +43,15 @@ router
             res.send(result);
         });
     });
+router
+    .route('/:id/album')
+    .get((req,res) => {
+        let id = req.params.id;
+        let sql = `CALL albumsOfArtistByID(${id})`;
+        db.query(sql ,(error , result) => {
+            if (error) throw(error) ;
+            res.json(result);
+       });
+    });
 
 module.exports = router ;
