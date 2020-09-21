@@ -10,11 +10,14 @@ function TopSongs() {
     const [songs , setSongs] = useState();
 
     const settings = {
+        autoplay: true,
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 400,
         slidesToShow: 5,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        pauseOnHover: true,
+        dotsClass: 'slick-dots'
       };
 
     useEffect(()=> {
@@ -28,14 +31,15 @@ function TopSongs() {
     return (
         <div className="MainTopCon">
             <h1>Top Songs</h1>
-            <div className="TopCon">
-                {
-                    songs &&
-                    songs.map((song,i)=>{
-                        return <Song key={i} song={song}/> ;
-                    })
-                }
-            </div>
+            {/* <div className="TopCon"> */}
+            <Slider {...settings}>
+            {
+                songs &&
+                songs.map((song,i)=>{
+                    return <Song key={i} song={song}/> ;
+                })
+            }
+            </Slider>
         </div>
     )
 }

@@ -8,7 +8,7 @@ function Artist({artist}) {
         <div 
             className="ItemCon"
             onClick={() => {history.push(`/artist/${artist.artist_id}`)}}>
-            <img src={artist.cover_img} style={{height: '100%', opacity: '0.6'}}></img>
+            <img src={artist.cover_img} style={{height: '200px', opacity: '0.6'}}></img>
             <div style={{
                 textAlign: 'center',
                 position: 'absolute',

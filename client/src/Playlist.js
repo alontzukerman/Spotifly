@@ -9,7 +9,7 @@ function Playlist({playlist}) {
         <div 
             className="ItemCon"
             onClick={() => {history.push(`/playlist/${playlist.playlist_id}`)}}>
-            <img src={playlist.cover_img} style={{height: '100%', opacity: '0.6'}}></img>
+            <img src={playlist.cover_img} style={{height: '150px', opacity: '0.6'}}></img>
             <div style={{
                 textAlign: 'center',
                 position: 'absolute',

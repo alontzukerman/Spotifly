@@ -1,10 +1,24 @@
 import React , { useEffect, useState } from 'react';
 import axios from 'axios';
 import Playlist from './Playlist';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 function TopPlaylists() {
 
     const [playlists , setPlaylists] = useState();
+
+    const settings = {
+        autoplay: true,
+        dots: true,
+        infinite: true,
+        speed: 400,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        pauseOnHover: true,
+        dotsClass: 'slick-dots'
+      };
 
     useEffect(()=> {
         getTopPlaylists();
@@ -17,14 +31,16 @@ function TopPlaylists() {
     return (
         <div className="MainTopCon">
             <h1>Top Playlists</h1>
-            <div className="TopCon">
+            {/* <div className="TopCon"> */}
+            <Slider {...settings} style={{height: '90%'}}>
             {
                 playlists &&
                 playlists.map((playlist,i)=>{
                     return <Playlist key={i} playlist={playlist}/>
                 })
-            }            
-            </div>
+            }
+            </Slider>
+            {/* </div> */}
         </div>
     )
 }

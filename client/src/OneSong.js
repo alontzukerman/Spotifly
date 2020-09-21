@@ -1,6 +1,6 @@
 import React , { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function OneSong(props) {
     console.log(props);
@@ -15,6 +15,10 @@ function OneSong(props) {
         getOneSong();
         props.location.search.length !== 0 && getOneOther();
     },[]);
+
+    useEffect(()=> {
+        getOneSong();
+    },[props.match.url]);
 
     async function getOneSong() {
         const { data } = await axios.get(props.match.url);
@@ -61,7 +65,7 @@ function OneSong(props) {
                         otherData.map((row,i)=>{
                             return (
                                 <div className="songsRow" key={i}
-                                    onClick={() => {history.push(`/song/${row.song_id}?artist=2`)}}>
+                                    onClick={() => {history.push(`/song/${row.song_id}?${typeOf}=${idOf}`)}}>
                                     <ion-icon name="play-outline"></ion-icon>
                                     <span style={{marginLeft: '40px'}}>{row.title}</span>
                                     <span style={{float: 'right'}}>{row.length}</span>

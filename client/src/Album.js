@@ -9,7 +9,7 @@ function Album({album}) {
         <div 
             className="ItemCon"
             onClick={() => {history.push(`/album/${album.album_id}`)}}>
-            <img src={album.cover_img} style={{height: '100%', opacity: '0.6'}}></img>
+            <img src={album.cover_img} style={{height: '150px', opacity: '0.6'}}></img>
             <div style={{
                 textAlign: 'center',
                 position: 'absolute',

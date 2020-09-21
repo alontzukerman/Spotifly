@@ -10,11 +10,14 @@ function TopArtists() {
     const [artists , setArtists] = useState();
 
     const settings = {
+        autoplay: true,
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        pauseOnHover: true,
+        dotsClass: 'slick-dots'
       };
       
     useEffect(()=> {
@@ -28,14 +31,16 @@ function TopArtists() {
     return (
         <div className="MainTopCon">
             <h1>Top Artists</h1>
-            <div className="TopCon">
+            {/* <div className="TopCon"> */}
+            <Slider {...settings} style={{height: '90%'}}>
             {
                 artists &&
                 artists.map((artist,i)=>{
                     return <Artist key={i} artist={artist}/>
                 })
             }
-            </div>
+            </Slider>
+            {/* </div> */}
         </div>
     )
 }
