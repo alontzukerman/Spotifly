@@ -8,8 +8,8 @@ function Playlist({playlist}) {
     return (
         <div 
             className="ItemCon"
-            onClick={() => {history.push(`/playlist/${playlist.playlist_id}`)}}>
-            <img src={playlist.cover_img} style={{height: '150px', opacity: '0.6'}}></img>
+            onClick={() => {history.push(`/playlist/${playlist.id}`)}}>
+            <img src={playlist.coverImg} alt="" style={{height: '150px', opacity: '0.6'}}></img>
             <div style={{
                 textAlign: 'center',
                 position: 'absolute',
@@ -18,7 +18,7 @@ function Playlist({playlist}) {
                 transform: 'translate(-50%, -50%)',
                 fontSize: 'x-large',
                 fontWeight: 'bolder'                
-            }}>{playlist.playlist_name}</div>
+            }}>{playlist.playlistName}</div>
         </div>
     )
 }

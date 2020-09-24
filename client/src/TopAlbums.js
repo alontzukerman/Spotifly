@@ -26,8 +26,9 @@ function TopAlbums() {
     },[]);
 
     async function getTopAlbums() {
-        const { data } = await axios.get('/top_albums');
-        setAlbums(data[0]);
+        const { data } = await axios.get('/album/topAlbums');
+        // console.log(data);
+        setAlbums(data);
     }
 
     return (

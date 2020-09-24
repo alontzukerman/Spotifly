@@ -23,17 +23,18 @@ function OneSong(props) {
     async function getOneSong() {
         const { data } = await axios.get(props.match.url);
         console.log(data);
-        setSongData(data[0]);
+        setSongData(data);
     }
 
     async function getOneOther() {
         const otherUrl = Object.fromEntries(new URLSearchParams(props.location.search));
         const type = Object.keys(otherUrl).toString();
         const id = Object.values(otherUrl).toString();
+        console.log(`${props.match.url}${props.location.search}`);
 
-        const { data } = await axios.get(`${props.match.url}?${type}=${id}`);
-        // console.log(data);
-        setOtherData(data[0]);
+        const { data } = await axios.get(`${props.match.url}${props.location.search}`);
+        console.log(data);
+        setOtherData(data);
         setTypeOf(type);
         setIdOf(id);
     }
@@ -45,30 +46,30 @@ function OneSong(props) {
                 songData && 
                 <div className="Card">
                     <iframe width="100%" height="100%" 
-                        src={songData[0].youtube_link} 
+                        src={songData.youtubeLink} 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                    <span style={{fontSize: 'large'}}>{songData[0].title}</span>
-                    <span style={{fontSize: 'large', float: 'right'}}>{songData[0].artist_name}</span>
+                    <span style={{fontSize: 'large'}}>{songData.songTitle}</span>
+                    <span style={{fontSize: 'large', float: 'right'}}>{songData.Artist.artistName}</span>
                 </div>
             }
             {
                 otherData &&
                 <div className="CardFamily">
                     <h1>
-                    { typeOf === 'album' && otherData[0].album_name }
-                    { typeOf === 'artist' && otherData[0].artist_name }
-                    { typeOf === 'playlist' && otherData[0].playlist_name }
+                    { typeOf === 'album' && otherData.albumName }
+                    { typeOf === 'artist' && otherData.artistName }
+                    { typeOf === 'playlist' && otherData.playlistName }
                     </h1>
                     <div className="songsCard">
                     {
                         otherData &&
-                        otherData.map((row,i)=>{
+                        otherData.Songs.map((row,i)=>{
                             return (
                                 <div className="songsRow" key={i}
-                                    onClick={() => {history.push(`/song/${row.song_id}?${typeOf}=${idOf}`)}}>
+                                    onClick={() => {history.push(`/song/${row.id}?${typeOf}=${idOf}`)}}>
                                     <ion-icon name="play-outline"></ion-icon>
-                                    <span style={{marginLeft: '40px'}}>{row.title}</span>
-                                    <span style={{float: 'right'}}>{row.length}</span>
+                                    <span style={{marginLeft: '40px'}}>{row.songTitle}</span>
+                                    <span style={{float: 'right'}}>{row.songLength}</span>
                                 </div>
                             );
                         })

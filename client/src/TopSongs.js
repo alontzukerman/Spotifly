@@ -25,8 +25,9 @@ function TopSongs() {
     },[]);
 
     async function getTopSongs() {
-        const { data } = await axios.get('/top_songs');
-        setSongs(data[0]);
+        const { data } = await axios.get('/song/topSongs');
+        // console.log(data);
+        setSongs(data);
     }
     return (
         <div className="MainTopCon">

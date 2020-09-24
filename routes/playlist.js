@@ -1,47 +1,27 @@
 const express = require('express');
+const { Playlist , songInPlaylist , Song } = require('../models');
 const router = express.Router();
-const db = require('../spotiflyDB');
 
-router
-    .route('/')
-    .post((req,res) => {
-        let body = req.body ;
-        let values = [body.playlist_name,body.cover_img,body.created_at,body.upload_at];
-        let sql = `INSERT INTO playlist(playlist_name,cover_img,created_at,upload_at) 
-        VALUES (?,?,?,?)`;
-        db.query(sql , values ,(error , result) => {
-            if (error) throw error ;
-            res.send(result);
-        });
+router.get('/', async (req, res) => {
+    const allPlaylists = await Playlist.findAll();
+    res.json(allPlaylists)
+});
+router.post('/', async (req, res) => {
+    const newPlaylist = await Playlist.create(req.body);
+    res.json(newPlaylist)
+});
+router.get('/topPlaylists', async (req, res) => {
+    const topPlaylists = await Playlist.findAll({
+        limit: 20
     });
-
-router
-    .route('/:id')
-    .get((req,res) => {
-        let id = req.params.id;
-        let sql = `CALL playlistByID(${id})`;
-        db.query(sql , [id] ,(error , result) => {
-           if (error) throw(error) ;
-           res.json(result);
-       });
-    })
-    .put((req,res) => {
-        let body = req.body ;
-        let values = [body.playlist_name,body.cover_img,body.created_at,body.upload_at,req.params.id];
-        let sql = `UPDATE playlist 
-        SET playlist_name = ? , cover_img = ? , created_at = ? ,upload_at = ?
-        WHERE playlist_id = ?`;
-        db.query(sql , values ,(error , result) => {
-            if (error) throw error ;
-            res.send(result);
-        });
-    })
-    .delete((req,res) => {
-        let sql = `DELETE FROM playlist WHERE playlist_id = ?`;
-        db.query(sql , [req.params.id] ,(error , result ) => {
-            if (error) throw error ;
-            res.send(result);
-        });
+    res.json(topPlaylists)
+});
+router.get('/:playlistId', async (req, res) => {
+    const playlist = await songInPlaylist.findAll({
+        include: [Playlist,Song],
+        where: { playlistId: req.params.playlistId }    
     });
-
+  
+    res.json(playlist);
+});
 module.exports = router ;

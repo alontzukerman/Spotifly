@@ -8,8 +8,8 @@ function Album({album}) {
     return (
         <div 
             className="ItemCon"
-            onClick={() => {history.push(`/album/${album.album_id}`)}}>
-            <img src={album.cover_img} style={{height: '150px', opacity: '0.6'}}></img>
+            onClick={() => {history.push(`/album/${album.id}`)}}>
+            <img src={album.coverImg} alt="" style={{height: '150px', opacity: '0.6'}}></img>
             <div style={{
                 textAlign: 'center',
                 position: 'absolute',
@@ -18,7 +18,7 @@ function Album({album}) {
                 transform: 'translate(-50%, -50%)',
                 fontSize: 'x-large',
                 fontWeight: 'bolder'                
-            }}>{album.album_name}</div>
+            }}>{album.albumName}</div>
         </div>
     )
 }

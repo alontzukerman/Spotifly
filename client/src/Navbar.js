@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <div className="Navbar">
             <Link to="/">
-                <img src={spotiflyIcon} style={{height: '100%'}}></img>
+                <img src={spotiflyIcon} alt="" style={{height: '100%'}}></img>
             </Link>
             {/* <Link style={{textDecoration: "none",color: "inherit"}} to="/">
                 <ion-icon size="large" name="home-outline"></ion-icon>

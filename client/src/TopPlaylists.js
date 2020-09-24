@@ -25,8 +25,9 @@ function TopPlaylists() {
     },[]);
 
     async function getTopPlaylists() {
-        const { data } = await axios.get('/top_playlist');
-        setPlaylists(data[0]);
+        const { data } = await axios.get('/playlist/topPlaylists');
+        // console.log(data);
+        setPlaylists(data);
     }
     return (
         <div className="MainTopCon">

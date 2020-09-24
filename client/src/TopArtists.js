@@ -25,8 +25,9 @@ function TopArtists() {
     },[]);
 
     async function getTopArtists() {
-        const { data } = await axios.get('/top_artists');
-        setArtists(data[0]);
+        const { data } = await axios.get('/artist/topArtists');
+        // console.log(data);
+        setArtists(data);
     }
     return (
         <div className="MainTopCon">

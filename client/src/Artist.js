@@ -7,8 +7,8 @@ function Artist({artist}) {
     return (
         <div 
             className="ItemCon"
-            onClick={() => {history.push(`/artist/${artist.artist_id}`)}}>
-            <img src={artist.cover_img} style={{height: '200px', opacity: '0.6'}}></img>
+            onClick={() => {history.push(`/artist/${artist.id}`)}}>
+            <img src={artist.coverImg} alt="" style={{height: '200px', opacity: '0.6'}}></img>
             <div style={{
                 textAlign: 'center',
                 position: 'absolute',
@@ -17,7 +17,7 @@ function Artist({artist}) {
                 transform: 'translate(-50%, -50%)',
                 fontSize: 'x-large',
                 fontWeight: 'bolder'                
-            }}>{artist.artist_name}</div>
+            }}>{artist.artistName}</div>
         </div>
     )
 }

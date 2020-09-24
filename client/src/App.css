@@ -7,14 +7,14 @@
 }
 .Navbar {
     display: flex;
-    height: 10vh;
+    height: 10%;
     position:sticky; 
     top:0;
     background-color: rgba(255, 0, 0, 0.6);
     color: white;
     font-size: x-large;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 .Home {
     display: flex;
