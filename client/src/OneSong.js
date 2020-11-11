@@ -1,15 +1,21 @@
 import React , { useEffect, useState } from 'react';
-import axios from 'axios';
+import network from './network';
 import { useHistory } from 'react-router-dom';
+import AnalyticsManager from './AnalyticsManager';
+
 
 function OneSong(props) {
-    console.log(props);
+    // console.log(props);
     let history = useHistory();
 
     const [songData , setSongData] = useState();
     const [otherData , setOtherData] = useState();
     const [typeOf , setTypeOf] = useState();
     const [idOf , setIdOf] = useState();
+
+    // useEffect(() => {
+    //     AnalyticsManager("One Song Page");
+    //   },[]);
 
     useEffect(()=> {
         getOneSong();
@@ -21,9 +27,10 @@ function OneSong(props) {
     },[props.match.url]);
 
     async function getOneSong() {
-        const { data } = await axios.get(props.match.url);
-        console.log(data);
+        const { data } = await network.get(props.match.url);
+        // console.log(data);
         setSongData(data);
+        AnalyticsManager("One Song", {"Song Name": data.songTitle});
     }
 
     async function getOneOther() {
@@ -32,7 +39,7 @@ function OneSong(props) {
         const id = Object.values(otherUrl).toString();
         console.log(`${props.match.url}${props.location.search}`);
 
-        const { data } = await axios.get(`${props.match.url}${props.location.search}`);
+        const { data } = await network.get(`${props.match.url}${props.location.search}`);
         console.log(data);
         setOtherData(data);
         setTypeOf(type);

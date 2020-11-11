@@ -1,5 +1,5 @@
 import React , { useEffect, useState } from 'react';
-import axios from 'axios';
+import network from './network';
 import Song from './Song';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -25,8 +25,8 @@ function TopSongs() {
     },[]);
 
     async function getTopSongs() {
-        const { data } = await axios.get('/song/topSongs');
-        // console.log(data);
+        const { data } = await network.get('/song/topSongs');
+        console.log(data);
         setSongs(data);
     }
     return (

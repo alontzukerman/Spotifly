@@ -1,9 +1,11 @@
 import React , { useEffect, useState } from 'react';
-import axios from 'axios';
+import network from './network';
 import { useHistory } from 'react-router-dom';
+import AnalyticsManager from './AnalyticsManager';
+
 
 function OneArtist({match}) {
-    console.log(match);
+    // console.log(match);
     let history = useHistory();
 
     const [artistData , setArtistData] = useState();
@@ -13,9 +15,10 @@ function OneArtist({match}) {
     },[]);
 
     async function getOneArtist() {
-        const { data } = await axios.get(match.url);
-        console.log(data);
+        const { data } = await network.get(match.url);
+        // console.log(data);
         setArtistData(data);
+        AnalyticsManager("One Artist" , {"Artist Name": data.artistName});
     }
 
 

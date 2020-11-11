@@ -1,5 +1,5 @@
 import React , { useEffect, useState } from 'react';
-import axios from 'axios';
+import network from './network';
 import Album from './Album';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -26,7 +26,7 @@ function TopAlbums() {
     },[]);
 
     async function getTopAlbums() {
-        const { data } = await axios.get('/album/topAlbums');
+        const { data } = await network.get('/album/topAlbums');
         // console.log(data);
         setAlbums(data);
     }

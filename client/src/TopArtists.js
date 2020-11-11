@@ -1,5 +1,5 @@
 import React , { useEffect, useState } from 'react';
-import axios from 'axios';
+import network from './network';
 import Artist from './Artist';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -25,7 +25,7 @@ function TopArtists() {
     },[]);
 
     async function getTopArtists() {
-        const { data } = await axios.get('/artist/topArtists');
+        const { data } = await network.get('/artist/topArtists');
         // console.log(data);
         setArtists(data);
     }

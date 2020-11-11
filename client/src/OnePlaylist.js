@@ -1,6 +1,8 @@
 import React , { useEffect, useState } from 'react';
-import axios from 'axios';
+import network from './network';
 import { useHistory } from 'react-router-dom';
+import AnalyticsManager from './AnalyticsManager';
+
 
 
 function OnePlaylist({match}) {
@@ -14,9 +16,11 @@ function OnePlaylist({match}) {
     },[]);
 
     async function getOnePlaylist() {
-        const { data } = await axios.get(match.url);
+        const { data } = await network.get(match.url);
         // console.log(data);
         setPlaylistData(data);
+        AnalyticsManager("One Playlist" , {"Playlist Name": data.playlistName});
+
     }
     return (
         <div className="OneOf">

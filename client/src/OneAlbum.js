@@ -1,6 +1,8 @@
 import React , { useEffect, useState } from 'react';
-import axios from 'axios';
+import network from './network';
 import { useHistory } from 'react-router-dom';
+import AnalyticsManager from './AnalyticsManager';
+
 
 function OneAlbum({match}) {
     // console.log(match);
@@ -13,9 +15,11 @@ function OneAlbum({match}) {
     },[]);
 
     async function getOneAlbum() {
-        const { data } = await axios.get(match.url);
+        const { data } = await network.get(match.url);
         // console.log(data);
         setAlbumData(data);
+        AnalyticsManager("One Album" , {"Album Name": data.albumName});
+
     }
     return (
         <div className="OneOf">

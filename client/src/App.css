@@ -4,17 +4,66 @@
     background-blend-mode: multiply;
     width: 100%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
 }
 .Navbar {
-    display: flex;
-    height: 10%;
-    position:sticky; 
-    top:0;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    align-items: center;
     background-color: rgba(255, 0, 0, 0.6);
     color: white;
     font-size: x-large;
+    height: 10vh;
+}
+.NavTag {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0.5;
+}
+.NavTag:hover {
+    color: rgb(255, 255, 255);
+    opacity: 1;
+}
+.HiddenTag {
+    display: none;
+}
+.Login {
+    height: 90vh;
+    display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+}
+.LoginCon {
+    box-shadow: 0 0 5px 5px rgba(255, 0, 0, 0.6);
+    border-radius: 5%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    height: 60%;
+}
+.Register {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.RegisterCon {
+    box-shadow: 0 0 5px 5px rgba(255, 0, 0, 0.6);
+    border-radius: 5%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    height: 60%;
 }
 .Home {
     display: flex;
@@ -170,4 +219,15 @@ h1 {
     width: 100px;
     height: auto;
     margin-top: -6px;
+}
+
+input {
+    padding: 10px;
+    margin: 6px;
+    font-size: 20px;
+    border: 0;
+    border-bottom: 4px solid  rgba(100, 0, 0, 0.6);
+    background-color: black;
+    color: white;
+
 }
