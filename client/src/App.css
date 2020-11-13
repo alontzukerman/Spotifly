@@ -10,8 +10,8 @@
 
 }
 .Navbar {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
     background-color: rgba(255, 0, 0, 0.6);
     color: white;
@@ -222,6 +222,7 @@ h1 {
 }
 
 input {
+    width: 25%;
     padding: 10px;
     margin: 6px;
     font-size: 20px;
