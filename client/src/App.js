@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {BrowserRouter as Router , Switch , Route} from 'react-router-dom';
 import './App.css';
 import Navbar from './Navbar';
+import SearchPage from './SearchPage';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
@@ -21,6 +22,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Switch>
+          <Route path='/search' exact component={SearchPage}/>
           <Route path='/' exact component={Home}/>
           <Route path='/login' exact component={Login}/>
           <Route path='/register' exact component={Register}/>

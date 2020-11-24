@@ -29,12 +29,15 @@ function Navbar() {
     }
     return (
         <div className="Navbar">
-            <StyledSearch />
-            <Link to="/" onClick={()=>sendEvent("Icon")}>
-                <img src={spotiflyIcon} alt="" style={{height: '10vh'}}></img>
-            </Link>
+            {/* <StyledSearch /> */}
             <Link to="/" className="NavTag" onClick={()=>sendEvent("Home")}>
                 Home
+            </Link>
+            <Link to='/search' className="NavTag" onClick={()=>sendEvent("Search")}>
+                Search
+            </Link>
+            <Link to="/" onClick={()=>sendEvent("Icon")}>
+                <img src={spotiflyIcon} alt="" style={{height: '10vh'}}></img>
             </Link>
             <Link to="/login" className={isLogged ? "HiddenTag" : "NavTag"}>
                 Login
